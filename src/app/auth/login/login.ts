@@ -57,6 +57,8 @@ export class Login {
         this.loading = false;
         const msg = err?.error?.message || 'Login failed. Please try again.';
         this.toastr.error(msg, 'Error', { positionClass: 'toast-top-right' });
+        console.log("hello");
+        
       }
     });
   }
