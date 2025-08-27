@@ -1,12 +1,14 @@
 <div class="container mt-3">
-    <h3>{{ message }}</h3>
-  
-    <table *ngIf="students && students.length > 0" class="table table-bordered table-striped mt-3">
+  <h3>{{ message }}</h3>
+
+  <ng-container *ngIf="students && students.length > 0; else noStudents">
+    <table class="table table-bordered table-striped mt-3">
       <thead>
         <tr>
           <th>Full Name</th>
           <th>Email</th>
           <th>Register No</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -14,9 +16,22 @@
           <td>{{ s.fullName }}</td>
           <td>{{ s.email }}</td>
           <td>{{ s.registerNo }}</td>
+          <td>
+            <button class="btn btn-success btn-sm me-2"
+                    (click)="approveRejectStudent(s.id, true)">
+              Approve
+            </button>
+            <button class="btn btn-danger btn-sm"
+                    (click)="approveRejectStudent(s.id, false)">
+              Reject
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
-  
-    <p *ngIf="students && students.length === 0">No pending students found.</p>
-  </div>
+  </ng-container>
+
+  <ng-template #noStudents>
+    <p>No pending students found.</p>
+  </ng-template>
+</div>

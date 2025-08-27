@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Sdmservice } from '../../shared/sdmservice';
+import { Student, Studentservice } from '../../shared/studentservice';
 
 @Component({
   selector: 'app-list-register-request',
@@ -8,10 +9,10 @@ import { Sdmservice } from '../../shared/sdmservice';
   styleUrl: './list-register-request.css'
 })
 export class ListRegisterRequest {
-  students: any[] = [];
+  students: Student[] = [];
   message: string = '';
 
-  constructor(private studentService: Sdmservice) {}
+  constructor(private studentService: Studentservice) {}
 
   ngOnInit(): void {
     this.loadPendingStudents();
@@ -20,10 +21,13 @@ export class ListRegisterRequest {
   loadPendingStudents(): void {
     this.studentService.getPendingStudents().subscribe({
       next: (res) => {
-        console.log("API Response:", res); // 👀 Debug log
+        console.log("API Response:", res);
         this.message = res.message;
-        this.students = res.students || [];   // ✅ Make sure it's assigned
-        console.log("Students:", this.students); // 👀 Debug log
+
+        // 🔧 Force proper array
+        this.students = res.students ? [...res.students] : [];
+
+        console.log("Students after fix:", this.students, "Length:", this.students.length);
       },
       error: (err) => {
         console.error("Error fetching students:", err);
@@ -31,4 +35,19 @@ export class ListRegisterRequest {
       }
     });
   }
+
+  // studentrequest.ts
+approveRejectStudent(userId: string, isApproved: boolean): void {
+  this.studentService.approveRejectStudents(userId, isApproved).subscribe({
+    next: (res) => {
+      this.message = res.message;
+      // Reload the list after action
+      this.loadPendingStudents();
+    },
+    error: (err) => {
+      console.error("Error updating student status:", err);
+      this.message = 'Failed to update student status';
+    }
+  });
+}
 }
