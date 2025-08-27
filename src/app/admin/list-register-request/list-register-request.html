@@ -1,0 +1,22 @@
+<div class="container mt-3">
+    <h3>{{ message }}</h3>
+  
+    <table *ngIf="students && students.length > 0" class="table table-bordered table-striped mt-3">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Register No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of students">
+          <td>{{ s.fullName }}</td>
+          <td>{{ s.email }}</td>
+          <td>{{ s.registerNo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p *ngIf="students && students.length === 0">No pending students found.</p>
+  </div>

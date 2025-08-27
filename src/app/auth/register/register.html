@@ -1,0 +1,112 @@
+<div class="container-fluid register-page">
+    <div class="row min-vh-100">
+  
+      <!-- Left Side - Hardcoded Content -->
+      <div class="col-md-6 d-none d-md-flex left-side align-items-center justify-content-center p-5">
+        <div class="content text-dark">
+          <h1>Welcome to Student Portal</h1>
+          <p class="lead">
+            Register now to access exclusive features, track your applications, and get updates instantly.
+          </p>
+          <ul>
+            <li>Easy application process</li>
+            <li>Track all your documents</li>
+            <li>Get notifications and alerts</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- Right Side - Registration Form -->
+      <div class="col-md-6 d-flex align-items-center justify-content-center p-5">
+        <div class="card shadow p-4 register-card w-100">
+          <h3 class="text-center mb-4">Student Registration</h3>
+  
+          <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+            <div class="row g-3">
+              <!-- Full Name -->
+              <div class="col-md-6">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  class="form-control"
+                  [(ngModel)]="registerRequest.fullName"
+                  required
+                />
+              </div>
+  
+              <!-- Register Number -->
+              <div class="col-md-6">
+                <label for="registerNo" class="form-label">Register No</label>
+                <input
+                  type="text"
+                  id="registerNo"
+                  name="registerNo"
+                  class="form-control"
+                  [(ngModel)]="registerRequest.registerNo"
+                  required
+                />
+              </div>
+  
+              <!-- Email -->
+              <div class="col-md-12">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  [(ngModel)]="registerRequest.email"
+                  required
+                />
+              </div>
+  
+              <!-- Password & Confirm Password -->
+              <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="form-control"
+                  [(ngModel)]="registerRequest.password"
+                  required
+                  minlength="6"
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  class="form-control"
+                  [(ngModel)]="registerRequest.confirmPassword"
+                  required
+                />
+              </div>
+            </div>
+  
+            <!-- Submit -->
+            <button type="submit"
+            class="btn w-100 mt-2"
+            style="background-color: #e59f63; color: #000; border: 1px solid #e6b27f;">
+              Register
+              <span *ngIf="loading" class="spinner-border spinner-border-sm ms-2"></span>
+            </button>
+          </form>
+  
+          <!-- Link to Login -->
+          <div class="text-center mt-3">
+            <small>
+              Already have an account?
+              <a routerLink="/login" class="text-decoration-none">Login</a>
+            </small>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+/* Green toast for success */
+.custom-toast.toast-success {
+    background-color: #28a745 !important;  /* Bootstrap green */
+    color: white !important;
+  }
+  
+  /* Red toast for error */
+  .custom-toast.toast-error {
+    background-color: #dc3545 !important;  /* Bootstrap red */
+    color: white !important;
+  }
+  

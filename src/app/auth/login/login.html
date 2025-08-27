@@ -1,0 +1,67 @@
+<div class="container-fluid min-vh-100" style="background-color: #FFDAB9;">
+    <div class="row min-vh-100 align-items-center">
+  
+      <!-- Left side hardcoded content -->
+      <div class="col-md-6 d-none d-md-flex flex-column justify-content-center p-5">
+        <h1 class="display-4 fw-bold">Welcome Back!</h1>
+        <p class="lead mt-3">Access your student account quickly and securely.</p>
+        <p class="mt-4">Manage your documents, track updates, and stay connected with your institution.</p>
+      </div>
+  
+      <!-- Right side login card -->
+      <div class="col-md-6 col-lg-4 d-flex justify-content-end">
+        <div class="card shadow p-4" style="width: 100%;">
+          <h3 class="text-center mb-4">Login</h3>
+  
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                [(ngModel)]="loginRequest.email"
+                required
+              />
+            </div>
+  
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                [(ngModel)]="loginRequest.password"
+                required
+              />
+            </div>
+  
+            <!-- Submit -->
+            <button
+              type="submit"
+              class="btn w-100 mt-2"
+              [disabled]="loginForm.invalid || loading"
+              style="background-color: #e59f63; color: #000; border: 1px solid #e6b27f;"
+            >
+              Login
+              <span *ngIf="loading" class="spinner-border spinner-border-sm ms-2"></span>
+            </button>
+          </form>
+  
+          <!-- Link to Register -->
+          <div class="text-center mt-3">
+            <small>
+              Don't have an account?
+              <a routerLink="/register" class="text-decoration-none">Register</a>
+            </small>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
